@@ -21,7 +21,7 @@
 
       <div class="col-md-4">
         <form class="form-inline" id="inputGauge">
-          <h3>Gauge (per 4")</h3>
+          <h4>Gauge (per 4")</h4>
           <div class="form-group">
             <label class="sr-only" for="rowsPerInch">Rows per 4"</label>
             <input type="number" class="form-control" id="rowsGauge" placeholder='Rows per 4"'>
@@ -32,7 +32,7 @@
         </form>
 
         <form class="form-inline">
-            <h3>Dimensions</h3>
+            <h4>Dimensions</h4>
             <div class="form-group">
               <label class="sr-only" for="inputRows">Rows</label>
               <input type="number" class="form-control" id="inputRows" placeholder="Rows">
@@ -41,6 +41,27 @@
               <input type="number" class="form-control" id="inputColumns" placeholder="Stitches or Columns">
               <button id="buildGrid" class="btn btn-default">Build New Grid</button>
             </div>      
+        </form>
+        <form class="color-pallette">
+          <h4>Select Color</h4>
+          <div class="form-group">
+            <div class="radio">
+              <label>
+                <input type="radio" name="colorRadios" id="colorRadio1" value="#A9A9A9" checked>
+                <div class="color-swatch gray"></div>
+              </label>
+
+            </div>
+            
+            <div class="radio">
+              <label>
+                <input type="radio" name="colorRadios" id="colorRadio2" value="#FFF">
+                <div class="color-swatch white"></div>
+              </label>
+              
+            </div>
+            
+          </div>
         </form>
         
       </div>
