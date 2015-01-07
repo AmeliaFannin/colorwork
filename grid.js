@@ -1,13 +1,16 @@
 function initGrid(e){
+  // prevents form default behavior (page reload)
   e.preventDefault();
 
   var container = document.getElementById("displayGrid");
   
+  // removes previous grid if it exists
   (function() {
     var last;
     while (last = container.lastChild) container.removeChild(last);
   })();
 
+  // gets user input for gauge and dimensions
   var rows = document.getElementById("inputRows").value;
   var columns = document.getElementById("inputColumns").value;
   var grid = gridMaker(rows, columns);
@@ -29,7 +32,6 @@ function gridMaker(rows, columns){
 
     for (var c = 0; c < columns; c++){
       var cell = tr.appendChild(document.createElement('td'));
-      // cell.innerHTML = i++;
       cell.style.width = rowGauge;
       cell.style.height = stitchGauge;
     }
@@ -37,6 +39,19 @@ function gridMaker(rows, columns){
   return grid;
 }
 
+// change color of cell to grey when clicked
+function changeColor(e) {
+  console.log("clicked on the grid");
+  e.target.style.background = "#A9A9A9";
+
+}
+
+// listens for the BuildNewGrid Button
 var el = document.getElementById("buildGrid");
 el.addEventListener('click', initGrid, false);
+
+// listens for cell click
+// variable duplication?
+var stitch = document.getElementById("displayGrid");
+stitch.addEventListener('click', changeColor, false);
 
