@@ -1,5 +1,6 @@
 .grid { 
-  border-collapse:collapse;
+  border-collapse: collapse;
+  margin-left: 10%;
 }
 .grid td {
   width: 60px;
@@ -7,8 +8,13 @@
   border: 1px solid #ccc;
 }
 
+.grid-stats {
+
+}
+
 .grid-container {
   margin-top: 30px;
+
 }
 
 .color-pallette {
@@ -18,9 +24,6 @@
 .btn {
   display: block;
   margin-top: 10px;
-}
-
-.radio {
 }
 
 .color-swatch {
@@ -37,5 +40,11 @@
 .white {
   background-color: #FFF;
   border: 1px solid #ccc;
+}
+
+.form-control {
+  display: inline;
+  height: 40px;
+  width: 65px;
 }
 

@@ -20,31 +20,36 @@
       </div>  
 
       <div class="col-md-4">
-        <form class="form-inline" id="inputGauge">
-          <h4>Gauge (per 4")</h4>
-          <div class="form-group">
-            <label class="sr-only" for="rowsPerInch">Rows per 4"</label>
-            <input type="number" class="form-control" id="rowsGauge" placeholder='Rows per 4"'>
-
-              <label class="sr-only" for="stitchesPerInch">Stitches per Inch</label>
-              <input type="number" class="form-control" id="stitchesGauge" placeholder='Stitches per 4"'>
-            </div>
-        </form>
-
-        <form class="form-inline">
-            <h4>Dimensions</h4>
+        <form>
+            <h3>Get Started</h3>
             <div class="form-group">
-              <label class="sr-only" for="inputRows">Rows</label>
-              <input type="number" class="form-control" id="inputRows" placeholder="Rows">
+              <label for="Rows"><small>Rows</label>
+              <input type="number" class="form-control" id="inputRows">
 
-              <label class="sr-only" for="inputColumns">Stitches (Columns)</label>
-              <input type="number" class="form-control" id="inputColumns" placeholder="Stitches or Columns">
-              <button id="buildGrid" class="btn btn-default">Build New Grid</button>
+              <label for="Stitches(Columns)">Stitches</label>
+              <input type="number" class="form-control" id="inputColumns">
+              
+              <button id="buildGrid" class="btn btn-default">Build Grid</button>
             </div>      
         </form>
-        <form class="color-pallette">
-          <h4>Select Color</h4>
+
+        <form id="inputGauge">
+          <h3>Gauge (per 4")</h3>
           <div class="form-group">
+            <label for="rowsPerInch">Rows</label>
+            <input type="number" class="form-control" id="rowsGauge">
+
+            <label for="stitchesPerInch">Stitches</label>
+            <input type="number" class="form-control" id="stitchesGauge">
+
+            <button id="applyGauge" class="btn btn-default">Apply Gauge</button>
+          </div>
+        </form>
+
+        
+        <form class="color-pallette">
+          <h3>Select Color</h3>
+          <div class="form-group" id="colorGroup">
             <div class="radio">
               <label>
                 <input type="radio" name="colorRadios" id="color1" value="#555" checked>
@@ -57,15 +62,17 @@
                 <input type="radio" name="colorRadios" id="color2" value="#FFF">
                 <div class="color-swatch white"></div>
               </label> 
-            </div>
-            <button id="clearGrid" class="btn btn-default">Clear Grid</button>
+            </div> 
           </div>
+          <button id="clearGrid" class="btn btn-default">Clear Grid</button>
         </form>
         
       </div>
 
       <div class="col-md-8">
-        <div id="displayGrid" class="grid-container">  
+        <h3 class="grid-stats">Grid Stats</h3>
+        <div id="displayGrid" class="grid-container">
+
         </div>
       </div>
     </div>
