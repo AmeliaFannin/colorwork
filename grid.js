@@ -40,18 +40,42 @@ function gridMaker(rows, columns){
 }
 
 // change color of cell to grey when clicked
-function changeColor(e) {
-  console.log("clicked on the grid");
-  e.target.style.background = "#A9A9A9";
+function changeColor(event) {
 
+  console.log(event, event.target.nodeName);
+
+// exchange for change listener
+  function selectedColor() {
+    var colors = document.getElementsByName("colorRadios");
+      
+    // loops through colorRadios to find selected color
+    for (var i = 0; i < colors.length; i++) {
+      if (colors[i].checked) {
+        return colors[i].value
+        break
+      }
+    }
+  }
+// check for type of target td vs table
+// conditional, secind click undo, is current cell already color?
+
+  if (event.target.nodeName === 'TD') {
+    event.target.style.background = selectedColor();
+  }
 }
 
+
+// wrap in window onload, move init grid into there
 // listens for the BuildNewGrid Button
 var el = document.getElementById("buildGrid");
 el.addEventListener('click', initGrid, false);
 
-// listens for cell click
+// listens for any cell click
 // variable duplication?
 var stitch = document.getElementById("displayGrid");
 stitch.addEventListener('click', changeColor, false);
+
+// listens for clearGrid Button
+var clear = document.getElementById("clearGrid");
+clear.addEventListener('click', initGrid, false);
 
