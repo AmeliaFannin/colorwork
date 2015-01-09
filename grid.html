@@ -21,15 +21,13 @@
 
       <div class="col-md-4">
         <form>
-            <h3>Get Started</h3>
+            <h3>Dimensions</h3>
             <div class="form-group">
               <label for="Rows"><small>Rows</label>
-              <input type="number" class="form-control" id="inputRows">
+              <input type="number" class="form-control dimensions" id="inputRows" placeholder="10" value="10">
 
               <label for="Stitches(Columns)">Stitches</label>
-              <input type="number" class="form-control" id="inputColumns">
-              
-              <button id="buildGrid" class="btn btn-default">Build Grid</button>
+              <input type="number" class="form-control dimensions" id="inputColumns" placeholder="10" value="10">
             </div>      
         </form>
 
@@ -37,12 +35,10 @@
           <h3>Gauge (per 4")</h3>
           <div class="form-group">
             <label for="rowsPerInch">Rows</label>
-            <input type="number" class="form-control" id="rowsGauge">
+            <input type="number" class="form-control gauge" id="rowsGauge" placeholder="10" value="10">
 
             <label for="stitchesPerInch">Stitches</label>
-            <input type="number" class="form-control" id="stitchesGauge">
-
-            <button id="applyGauge" class="btn btn-default">Apply Gauge</button>
+            <input type="number" class="form-control gauge" id="stitchesGauge" placeholder="10" value="10">
           </div>
         </form>
 
@@ -64,18 +60,17 @@
               </label> 
             </div> 
           </div>
-          <button id="clearGrid" class="btn btn-default">Clear Grid</button>
+          <button id="clearColors" class="btn btn-default">Clear Colors</button>
         </form>
         
       </div>
 
       <div class="col-md-8">
-        <h3 class="grid-stats">Grid Stats</h3>
         <div id="displayGrid" class="grid-container">
-
         </div>
       </div>
     </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="grid.js"></script>
   </body>
 </html>

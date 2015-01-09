@@ -1,11 +1,10 @@
 // Grid
-function gridMaker(rows, columns){
+function gridMaker(rows, columns) {
   var i = 0;
   var grid = document.createElement('table');
   grid.className = 'grid';
   
   for (var r = 0; r < rows; r++){
-    
     var tr = grid.appendChild(document.createElement('tr'));
 
     for (var c = 0; c < columns; c++){
@@ -18,12 +17,9 @@ function gridMaker(rows, columns){
 
 
 // Gauge
-function applyGauge(e) {
-  e.preventDefault();
-
+function applyGauge() {
   var rows = (4 / document.getElementById("rowsGauge").value) * 200;
   var stitches = (4 / document.getElementById("stitchesGauge").value) * 200;
-
   var cells = document.getElementsByClassName("cells");
 
   for (var i = 0; i < cells.length; i++) {
@@ -46,44 +42,45 @@ function changeColor(e) {
 }
 
 
-// onload
-window.onload = function() {
+$( document ).ready(function() {
+  var container = $("#displayGrid");
   
-  // Button listeners
-  var buildGridBtn = document.getElementById("buildGrid");
-  buildGridBtn.addEventListener('click', initGrid, false);
+  initGrid();
 
-  var applyGaugeBtn = document.getElementById("applyGauge");
-  applyGaugeBtn.addEventListener('click', applyGauge, false);
+  $(".form-control.dimensions").change(function() {
+    updateGrid();
+  });
 
-  var clearGridBtn = document.getElementById("clearGrid");
-  clearGridBtn.addEventListener('click', initGrid, false);
+  $(".form-control.gauge").change(function() {
+    applyGauge();
+  });
 
-  // listener: radio click
-  var colorSelector = document.getElementById("colorGroup");
-  colorSelector.addEventListener('click', selectColor, false);
-  
-  // listener: cell click
-  var container = document.getElementById("displayGrid");
-  container.addEventListener('click', changeColor, false);
+  $("#clearColors").click(function() {
+    $(".cells").background = "#FFF";
+  });
 
+  $("#colorGroup").click(function(e) {
+    selectColor(e);
+  });
 
-  function initGrid(e){
-    e.preventDefault();
-    
-    // removes previous grid if it exists
-    (function() {
-      var last;
-      while (last = container.lastChild) container.removeChild(last);
-    })();
+  container.click(function(e) {
+    changeColor(e);
+  });
 
-    var rows = document.getElementById("inputRows").value;
-    var columns = document.getElementById("inputColumns").value;
-    var grid = gridMaker(rows, columns);
-    
-    container.appendChild(grid);
+  function initGrid() {
+    var rows = $("#inputRows").val();
+    var columns = $("#inputColumns").val();
+
+    container.append(gridMaker(rows, columns));
   }
-}
+
+  function updateGrid() {
+    container.empty();
+
+    initGrid();
+  }
+
+});
 
 
 
