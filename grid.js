@@ -1,31 +1,38 @@
 // Grid
-function gridMaker(rows, columns) {
-  var i = 0;
-  var grid = document.createElement('table');
-  grid.className = 'grid';
-  
-  for (var r = 0; r < rows; r++){
-    var tr = grid.appendChild(document.createElement('tr'));
+function gridMakerTwo(rows, columns) {
+  var grid = "<table class='grid'>";
 
-    for (var c = 0; c < columns; c++){
-      var cell = tr.appendChild(document.createElement('td'));
-      cell.className = 'cells'
+  for (var r = 0; r < rows; r++) {
+    grid += "<tr>";
+
+    for (var c = 0; c < columns; c++) {
+      grid += "<td class='cells'></td>"; 
     }
+    grid += "</tr>";
   }
-  return grid;
+  grid += "</table>";
+  return $(grid);
 }
 
 
 // Gauge
 function applyGauge() {
-  var rows = (4 / document.getElementById("rowsGauge").value) * 200;
-  var stitches = (4 / document.getElementById("stitchesGauge").value) * 200;
-  var cells = document.getElementsByClassName("cells");
-
-  for (var i = 0; i < cells.length; i++) {
-    cells[i].style.width = rows + "px";
-    cells[i].style.height = stitches + "px";
+  var rows = $("#rowsGauge").val();
+  var stitches = $("#stitchesGauge").val();
+  
+  function calcGauge(num) {
+    return (4 / num * 200) + "px";
   }
+
+  var cells = $(".cells");
+
+  cells.css("width", calcGauge(rows));
+  cells.css("height", calcGauge(stitches));
+
+  // for (var i = 0; i < cells.length; i++) {
+  //   cells[i].style.width = rows + "px";
+  //   cells[i].style.height = stitches + "px";
+  // }
 }
 
 // Colors
@@ -33,6 +40,12 @@ var currentColor = "#555";
 
 function selectColor(e) {
   currentColor = e.target.value;
+}
+
+function addColor(e) {
+  e.preventDefault();
+
+  // finish this 
 }
 
 function changeColor(e) {
@@ -67,11 +80,15 @@ $( document ).ready(function() {
     changeColor(e);
   });
 
+  $("#addColor").click(function(e) {
+    addColor(e);
+  });
+
   function initGrid() {
     var rows = $("#inputRows").val();
     var columns = $("#inputColumns").val();
 
-    container.append(gridMaker(rows, columns));
+    container.append(gridMakerTwo(rows, columns));
   }
 
   function updateGrid() {
