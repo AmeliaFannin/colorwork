@@ -9,6 +9,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="colorpicker/dist/css/bootstrap-colorpicker.css">
     <link href="grid.css" rel="stylesheet">
   </head>
     
@@ -19,14 +20,14 @@
         <p class="title-description">a gauge specific canvas for colorwork design</p>
       </div>  
 
-      <div class="col-md-4">
+      <div class="col-md-3">
         <form>
             <h3>Dimensions</h3>
             <div class="form-group">
-              <label for="Rows"><small>Rows</label>
+              <label for="Rows"><small>Rows</small></label>
               <input type="number" class="form-control dimensions" id="inputRows" placeholder="10" value="10">
 
-              <label for="Stitches(Columns)">Stitches</label>
+              <label for="Stitches(Columns)"><small>Stitches</small></label>
               <input type="number" class="form-control dimensions" id="inputColumns" placeholder="10" value="10">
             </div>      
         </form>
@@ -43,35 +44,33 @@
         </form>
 
         
-        <form class="color-pallette">
-          <h3>Color Pallette</h3>
+        <form class="color-palette">
+          <h3>Color Palette</h3>
           <div class="form-group" id="colorGroup">
-            <div class="radio">
-              <label>
-                <input type="radio" name="colorRadios" id="color1" value="#555" checked>
-                <div class="color-swatch gray"></div>
-              </label>
+            <div class="input-group radio">
+                <input type="radio" name="colorRadios" value="#555555" checked="checked">
+                <input type="text" value="" class="form-control color-name" />
+                <span class="input-group-addon"><i></i></span>
             </div>
             
-            <div class="radio">
-              <label>
-                <input type="radio" name="colorRadios" id="color2" value="#FFF">
-                <div class="color-swatch white"></div>
-              </label> 
+            <div class="input-group radio clone">
+                <input type="radio" name="colorRadios" value="#FFF">
+                <input type="text" value="" class="form-control color-name" />
+                <span class="input-group-addon"><i></i></span>
             </div> 
           </div>
           <button id="addColor" class="btn btn-default">Add Color</button>
           <button id="clearColors" class="btn btn-default">Clear Colors</button>
         </form>
-        
       </div>
 
-      <div class="col-md-8">
+      <div class="col-md-9">
         <div id="displayGrid" class="grid-container">
         </div>
       </div>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="colorpicker/dist/js/bootstrap-colorpicker.js"></script>
     <script src="grid.js"></script>
   </body>
 </html>

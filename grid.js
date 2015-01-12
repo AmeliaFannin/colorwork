@@ -14,6 +14,7 @@ function gridMakerTwo(rows, columns) {
   return $(grid);
 }
 
+// look up data attributes
 
 // Gauge
 function applyGauge() {
@@ -28,18 +29,18 @@ function applyGauge() {
 
   cells.css("width", calcGauge(rows));
   cells.css("height", calcGauge(stitches));
-
-  // for (var i = 0; i < cells.length; i++) {
-  //   cells[i].style.width = rows + "px";
-  //   cells[i].style.height = stitches + "px";
-  // }
 }
 
-// Colors
-var currentColor = "#555";
 
-function selectColor(e) {
-  currentColor = e.target.value;
+
+
+
+// Colors
+function changeCellColor(e) {
+  var target = $(e.target);
+  if ( target.is( "td" ) ) {
+    target.css("background", $("input:checked").val() );
+  }
 }
 
 function addColor(e) {
@@ -48,11 +49,9 @@ function addColor(e) {
   // finish this 
 }
 
-function changeColor(e) {
-  if (e.target.nodeName === 'TD') {
-    e.target.style.background = currentColor;
-  }
-}
+
+
+
 
 
 $( document ).ready(function() {
@@ -69,20 +68,26 @@ $( document ).ready(function() {
   });
 
   $("#clearColors").click(function() {
-    $(".cells").background = "#FFF";
-  });
-
-  $("#colorGroup").click(function(e) {
-    selectColor(e);
+    $(".cells").css("background", "FFF");
   });
 
   container.click(function(e) {
-    changeColor(e);
+    changeCellColor(e);
   });
 
-  $("#addColor").click(function(e) {
-    addColor(e);
+
+  $("#addColor").on("click", function(e) {
+    e.preventDefault();
+
+    var picker = $('.input-group.radio').last().clone();
+    picker.appendTo("#colorGroup");
+      
+    picker.colorpicker().on('changeColor', function(ev){
+      $(ev.target).val(ev.color.toHex());
+      $(ev.target).find('input[type="radio"]').prop("checked", "checked");
+    });    
   });
+
 
   function initGrid() {
     var rows = $("#inputRows").val();
@@ -93,9 +98,15 @@ $( document ).ready(function() {
 
   function updateGrid() {
     container.empty();
-
     initGrid();
   }
+
+  $(function() {
+    $('.input-group.radio').colorpicker().on('changeColor', function(ev){
+      $(ev.target).val(ev.color.toHex());
+      $(ev.target).find('input[type="radio"]').prop("checked", "checked");
+    });
+  });
 
 });
 
