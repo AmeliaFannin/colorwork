@@ -6,7 +6,7 @@ function gridMakerTwo(rows, columns) {
     grid += "<tr>";
 
     for (var c = 0; c < columns; c++) {
-      grid += "<td class='cells'></td>"; 
+      grid += "<td class='cells backgroundCell'></td>"; 
     }
     grid += "</tr>";
   }
@@ -36,26 +36,29 @@ function applyGauge() {
 
 
 // Colors
+
 function changeCellColor(e) {
   var target = $(e.target);
+  var selectedColor = $("input:checked");
+  
+
   if ( target.is( "td" ) ) {
-    target.css("background", $("input:checked").val() );
+
+    if ( selectedColor.parent().is(".background")) {
+      target.removeClass("cellColor");
+
+    } else {
+      target.addClass("cellColor");
+    }
+
+    target.css("background", selectedColor.val());
   }
 }
-
-function addColor(e) {
-  e.preventDefault();
-
-  // finish this 
-}
-
-
-
-
 
 
 $( document ).ready(function() {
   var container = $("#displayGrid");
+  var radioInputs = $("input-group.radio");
   
   initGrid();
 
@@ -67,8 +70,16 @@ $( document ).ready(function() {
     applyGauge();
   });
 
-  $("#clearColors").click(function() {
-    $(".cells").css("background", "FFF");
+  $("#resetColors").on("click", function(e) {
+    e.preventDefault();
+
+    // destroy might be better than empty
+    $(".additionalColor").empty();
+
+    $('.input-group.radio.background').colorpicker('setValue', "#FFFFFF" );
+    $('.input-group.radio.clone').colorpicker('setValue', "#555555" );
+
+    $(".cells").removeClass("cellColor").css("background", $(".background").val());
   });
 
   container.click(function(e) {
@@ -79,7 +90,7 @@ $( document ).ready(function() {
   $("#addColor").on("click", function(e) {
     e.preventDefault();
 
-    var picker = $('.input-group.radio').last().clone();
+    var picker = radioInputs.last().clone().addClass("additionalColor");
     picker.appendTo("#colorGroup");
       
     picker.colorpicker().on('changeColor', function(ev){
@@ -102,9 +113,14 @@ $( document ).ready(function() {
   }
 
   $(function() {
-    $('.input-group.radio').colorpicker().on('changeColor', function(ev){
-      $(ev.target).val(ev.color.toHex());
-      $(ev.target).find('input[type="radio"]').prop("checked", "checked");
+    radioInputs.colorpicker().on('changeColor', function(ev){
+      var target = $(ev.target);
+      target.val(ev.color.toHex());
+      target.find('input[type="radio"]').prop("checked", "checked");
+      
+      if ( target.is (".background") ) {
+        $(".cells.backgroundCell").not(".cellColor").css("background", target.val());
+      }
     });
   });
 
