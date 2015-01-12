@@ -58,7 +58,6 @@ function changeCellColor(e) {
 
 $( document ).ready(function() {
   var container = $("#displayGrid");
-  var radioInputs = $("input-group.radio");
   
   initGrid();
 
@@ -90,7 +89,7 @@ $( document ).ready(function() {
   $("#addColor").on("click", function(e) {
     e.preventDefault();
 
-    var picker = radioInputs.last().clone().addClass("additionalColor");
+    var picker = $(".input-group.radio").last().clone().addClass("additionalColor");
     picker.appendTo("#colorGroup");
       
     picker.colorpicker().on('changeColor', function(ev){
@@ -113,13 +112,13 @@ $( document ).ready(function() {
   }
 
   $(function() {
-    radioInputs.colorpicker().on('changeColor', function(ev){
+    $(".input-group.radio").colorpicker().on('changeColor', function(ev){
       var target = $(ev.target);
       target.val(ev.color.toHex());
       target.find('input[type="radio"]').prop("checked", "checked");
       
       if ( target.is (".background") ) {
-        $(".cells.backgroundCell").not(".cellColor").css("background", target.val());
+        $(".cells").not(".cellColor").css("background", target.val());
       }
     });
   });
