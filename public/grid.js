@@ -1,5 +1,5 @@
 // Grid
-function gridMakerTwo(rows, columns) {
+function gridMaker(rows, columns) {
   var grid = "<table class='grid'>";
 
   for (var r = 0; r < rows; r++) {
@@ -20,19 +20,27 @@ function gridMakerTwo(rows, columns) {
 function applyGauge() {
   var rows = $("#rowsGauge").val();
   var stitches = $("#stitchesGauge").val();
-  
+  var cells = $(".cells");
+
   function calcGauge(num) {
     return (4 / num * 200) + "px";
   }
 
-  var cells = $(".cells");
-
   cells.css("width", calcGauge(rows));
   cells.css("height", calcGauge(stitches));
+  
+  
+  function calcSize(gauge, num) {
+    return $(num).val() / (gauge / 4)
+  }
+  var height = calcSize(stitches, "#inputColumns");
+  var width = calcSize(rows, "#inputRows");
+
+  var sizeString = 'Current Grid: ' + height + ' inches tall by ' + width + ' inches wide';
+
+  $(".size").text(sizeString);
+  console.log(sizeString);
 }
-
-
-
 
 
 // Colors
@@ -61,19 +69,24 @@ $( document ).ready(function() {
   
   initGrid();
 
-  $(".form-control.dimensions").change(function() {
+  
+  // onchange
+
+  $(".form-control.dimensions").on("change",function() {
     updateGrid();
   });
 
-  $(".form-control.gauge").change(function() {
+  $(".form-control.gauge").on("change", function() {
     applyGauge();
   });
+
+  
+  // on click
 
   $("#resetColors").on("click", function(e) {
     e.preventDefault();
 
-    // destroy might be better than empty
-    $(".additionalColor").empty();
+    $(".additionalColor").remove();
 
     $('.input-group.radio.background').colorpicker('setValue', "#FFFFFF" );
     $('.input-group.radio.clone').colorpicker('setValue', "#555555" );
@@ -81,7 +94,7 @@ $( document ).ready(function() {
     $(".cells").removeClass("cellColor").css("background", $(".background").val());
   });
 
-  container.click(function(e) {
+  container.on("click", function(e) {
     changeCellColor(e);
   });
 
@@ -89,7 +102,7 @@ $( document ).ready(function() {
   $("#addColor").on("click", function(e) {
     e.preventDefault();
 
-    var picker = $(".input-group.radio").last().clone().addClass("additionalColor");
+    var picker = $(".input-group.radio.clone").last().clone().addClass("additionalColor");
     picker.appendTo("#colorGroup");
       
     picker.colorpicker().on('changeColor', function(ev){
@@ -103,7 +116,8 @@ $( document ).ready(function() {
     var rows = $("#inputRows").val();
     var columns = $("#inputColumns").val();
 
-    container.append(gridMakerTwo(rows, columns));
+    container.append(gridMaker(rows, columns));
+    applyGauge();
   }
 
   function updateGrid() {

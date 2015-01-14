@@ -29,7 +29,8 @@
 
               <label for="Stitches(Columns)"><small>Stitches</small></label>
               <input type="number" class="form-control dimensions" id="inputColumns" placeholder="15" value="15">
-            </div>      
+            </div>
+            <div class="size"></div>      
         </form>
 
         <form id="inputGauge">
@@ -49,15 +50,15 @@
           <div class="form-group" id="colorGroup">
             <label for="input-group radio">Background Color</label>
             <div class="input-group radio background">
-                <input type="radio" name="colorRadios" id="backgroundColor" value="#FFFFFF">
-                <input type="text" value="" class="form-control color-name" />
-                <span class="input-group-addon"><i></i></span>
+              <input type="radio" name="colorRadios" id="backgroundColor" value="#FFFFFF">
+              <input type="text" value="" class="form-control color-name" />
+              <span class="input-group-addon"><i></i></span>
             </div>
-            
+            <label for="input-group radio">Accent Colors</label>
             <div class="input-group radio clone">
-                <input type="radio" name="colorRadios" id="cloneColor" value="#555555" checked="checked">
-                <input type="text" value="" class="form-control color-name" />
-                <span class="input-group-addon"><i></i></span>
+              <input type="radio" name="colorRadios" id="cloneColor" value="#555555" checked="checked">
+              <input type="text" value="" class="form-control color-name" />
+              <span class="input-group-addon"><i></i></span>
             </div> 
           </div>
           <button id="addColor" class="btn btn-default">Add Color</button>
