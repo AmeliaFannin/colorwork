@@ -1,8 +1,10 @@
 require 'sinatra'
 
-require 'bundler/setup'
+require 'bundler'
 
-get '/grid.html' do
+# set :server, 'thin'
+
+get '/' do
   redirect '/grid.html'
 end
 
