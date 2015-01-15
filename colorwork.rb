@@ -7,5 +7,3 @@ require 'bundler'
 get '/' do
   redirect '/grid.html'
 end
-
-
