@@ -1,6 +1,7 @@
 .grid { 
-  border-collapse: collapse;
-  margin-left: 10%;
+  border-collapse: collapse;*/
+  margin-left: 3%;
+  margin-top: 30px;
 }
 .grid td {
   width: 40px;
@@ -8,26 +9,12 @@
   border: 1px solid #ccc;
 }
 
-.grid-container {
-  margin-top: 30px;
-}
-
-.color-palette {
-  margin-top: 30px;
-}
-
 .btn {
   display: block;
   margin-top: 10px;
 }
 
-.dimensions {
-  display: inline;
-  height: 40px;
-  width: 65px;
-}
-
-.gauge {
+.box-style {
   display: inline;
   height: 40px;
   width: 65px;
@@ -44,8 +31,9 @@
   height: 3px;
 }
 
-.radio {
-
+.message {
+  color: blue;
+  font-style: italic;
 }
 
 

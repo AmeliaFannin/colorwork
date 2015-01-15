@@ -33,8 +33,8 @@ function applyGauge() {
   function calcSize(gauge, num) {
     return $(num).val() / (gauge / 4)
   }
-  var height = calcSize(stitches, "#inputColumns");
-  var width = calcSize(rows, "#inputRows");
+  var height = calcSize(stitches, "#inputColumns").toFixed(2);
+  var width = calcSize(rows, "#inputRows").toFixed(2);
 
   var sizeString = 'Current Grid: ' + height + ' inches tall by ' + width + ' inches wide';
 
